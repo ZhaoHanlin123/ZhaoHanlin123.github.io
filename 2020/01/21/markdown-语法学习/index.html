@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://yoursite.com/markdown-%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0/earth.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/01/21/markdown-%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0/universe.jpg">
 <meta property="article:published_time" content="2020-01-21T07:00:35.000Z">
-<meta property="article:modified_time" content="2020-01-24T03:49:57.030Z">
+<meta property="article:modified_time" content="2020-01-24T06:44:36.022Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/markdown-%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0/earth.jpg">
@@ -284,6 +284,7 @@
 </blockquote>
 <p>示例：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img universe.jpg universe %&#125;</span><br></pre></td></tr></table></figure>
+
 <p>效果如下:</p>
 <img src="/2020/01/21/markdown-%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0/universe.jpg" class="" title="universe">
 
@@ -311,30 +312,28 @@
 <p>示例：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">姓名|成绩|排名</span><br><span class="line">----|:--:|--:</span><br><span class="line">小明|98|1</span><br><span class="line">小王|90|2</span><br><span class="line">小赵|88|3</span><br></pre></td></tr></table></figure>
 
-<table>
-<thead>
-<tr>
-<th>姓名</th>
-<th align="center">成绩</th>
-<th align="right">排名</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>小明</td>
-<td align="center">98</td>
-<td align="right">1</td>
-</tr>
-<tr>
-<td>小王</td>
-<td align="center">90</td>
-<td align="right">2</td>
-</tr>
-<tr>
-<td>小赵</td>
-<td align="center">88</td>
-<td align="right">3</td>
-</tr>
-</tbody></table>
+<p>效果如下：<br>姓名|成绩|排名<br>—-|:–:|–:<br>小明|98|1<br>小王|90|2<br>小赵|88|3</p>
+<h2 id="7-超链接"><a href="#7-超链接" class="headerlink" title="7 超链接"></a>7 超链接</h2><p>语法：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">超链接名</span>](<span class="link">超链接地址 "超链接title"</span>)</span><br><span class="line">title可加可不加</span><br></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">简书</span>](<span class="link">http://jianshu.com</span>)</span><br><span class="line">[<span class="string">百度</span>](<span class="link">http://baidu.com</span>)</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：<br><a href="http://jianshu.com" target="_blank" rel="noopener" title="简书">简书</a><br><a href="http://baidu.com" target="_blank" rel="noopener" title="百度">百度</a></p>
+<h2 id="9-代码"><a href="#9-代码" class="headerlink" title="9 代码"></a>9 代码</h2><h3 id="9-1-单行代码"><a href="#9-1-单行代码" class="headerlink" title="9.1 单行代码"></a>9.1 单行代码</h3><p>单行代码之间用一个反引号包起来<br>示例：<br><code>hello world</code></p>
+<h3 id="9-2-多行代码"><a href="#9-2-多行代码" class="headerlink" title="9.2 多行代码"></a>9.2 多行代码</h3><p>代码块之间分别用三个反引号包起来，且两边的反引号单独占一行<br>并且可以指定一种语言</p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(&#96;&#96;&#96;) python</span><br><span class="line">import sys</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">print(&quot;hello world&quot;)</span><br><span class="line">(&#96;&#96;&#96;)</span><br></pre></td></tr></table></figure>
+
+<p>其中括号为了防止```发生作用</p>
+<p>效果如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">print(<span class="string">"hello world"</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="10-公式"><a href="#10-公式" class="headerlink" title="10 公式"></a>10 公式</h2><p>当你需要在编辑器中插入数学公式时，可以使用两个美元符 $$ 包裹 TeX 或 LaTeX 格式的数学公式来实现。提交后，问答和文章页会根据需要加载 Mathjax 对数学公式进行渲染。</p>
+<p>示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">f(x) &#x3D; \frac&#123;1&#125;&#123;\sqrt&#123;2\pi&#125;\sigma&#125;e^&#123;-\frac&#123;x^2&#125;&#123;2\sigma^2&#125;&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：<br>$$<br>f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{x^2}{2\sigma^2}}<br>$$</p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://www.runoob.com/markdown/md-lists.html" target="_blank" rel="noopener">https://www.runoob.com/markdown/md-lists.html</a><br><a href="https://www.jianshu.com/p/191d1e21f7ed" target="_blank" rel="noopener">https://www.jianshu.com/p/191d1e21f7ed</a><br><a href="https://blog.csdn.net/oDianZi1234567/article/details/89323982" target="_blank" rel="noopener">https://blog.csdn.net/oDianZi1234567/article/details/89323982</a></p>
 
       
