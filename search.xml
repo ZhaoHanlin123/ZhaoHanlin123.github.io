@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>torchvision模块介绍</title>
+    <url>/2020/01/28/torchvision%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/</url>
+    <content><![CDATA[<p>torchvision是独立于pytorch的关于图像操作的一些方便工具库。<br><a id="more"></a><br>torchvision主要包括一下几个包：</p>
+<ul>
+<li>torchvision.datasets: 一些加载数据的函数及常用的数据集接口。</li>
+<li>torchvision.models：包含常用的模型结构（含预训练模型）和训练好的参数，例如AlexNet、VGG、ResNet等。</li>
+<li>torchvision.transforms: 常用的图片变换，例如裁剪、旋转等。</li>
+<li>torchvision.utils: 其他的一些有用的方法。</li>
+</ul>
+<p>具体代码可以参考<a href="https://github.com/pytorch/vision/tree/master/torchvision" target="_blank" rel="noopener">github</a></p>
+<h2 id="torchvision-datasets"><a href="#torchvision-datasets" class="headerlink" title="torchvision.datasets"></a>torchvision.datasets</h2><p>所有数据集都是torch.utils.data.Dataset的子类，都含有<code>__getitem__</code>和<code>__len__</code>方法。<br>因此，它们都可以传递给torch.utils.data.DataLoader，使用torch.multiprocessing可以并行加载多个样本。例如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">imagenet_data = torchvision.datasets.ImageNet(<span class="string">'path/to/imagenet_root/'</span>)</span><br><span class="line">data_loader = torch.utils.data.DataLoader(imagenet_data,</span><br><span class="line">                                          batch_size=<span class="number">4</span>,</span><br><span class="line">                                          shuffle=<span class="literal">True</span>,</span><br><span class="line">                                          num_workers=args.nThreads)</span><br></pre></td></tr></table></figure>
+<p>包括以下数据集</p>
+<ul>
+<li>MNIST</li>
+<li>Fashion-MNIST</li>
+<li>KMNIST</li>
+<li>EMNIST</li>
+<li>FakeData</li>
+<li>COCO  <ul>
+<li>Captions</li>
+<li>Detection</li>
+</ul>
+</li>
+<li>LSUN</li>
+<li>ImageFolder</li>
+<li>DatasetFolder</li>
+<li>Imagenet-12</li>
+<li>CIFAR</li>
+<li>STL10</li>
+<li>SVHN</li>
+<li>PhotoTour</li>
+<li>SBU</li>
+<li>Flickr</li>
+<li>VOC</li>
+<li>Cityscapes</li>
+<li>SBD</li>
+</ul>
+<p>每个数据集都有相似的参数，在掌握一个后很容易掌握其他数据集。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">torchvision.datasets.MNIST(root, train=<span class="literal">True</span>, transform=<span class="literal">None</span>, target_transform=<span class="literal">None</span>, download=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>root</strong>:数据的目录，里边有 processed/training.pt 和processed/test.pt 的内容<br><strong>train</strong>: <code>True</code>-使用训练集, <code>False</code>-使用测试集.<br><strong>transform</strong>: 给输入图像施加变换<br><strong>target_transform</strong>: 给目标值(类别标签)施加的变换<br><strong>download</strong>: 是否下载mnist数据集,首次使用时需要下载为<code>True</code>。<br>示例:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"></span><br><span class="line">MNIST_train = torchvision.datasets.MNIST(<span class="string">'Datasets/MNIST'</span>, train=<span class="literal">True</span>, transform=transforms.ToTensor(), target_transform=<span class="literal">None</span>, download=<span class="literal">False</span>)</span><br><span class="line">MNIST_test = torchvision.datasets.MNIST(<span class="string">'Datasets/MNIST'</span>, train=<span class="literal">False</span>, transform=transforms.ToTensor(), target_transform=<span class="literal">None</span>, download=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p>通过<code>len()</code>获得数据集大小，通过下标来获得具体的个数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(type(MNIST_train))</span><br><span class="line">print(len(MNIST_train), len(MNIST_test))</span><br><span class="line"></span><br><span class="line">feature, label = MNIST_train[<span class="number">0</span>]</span><br><span class="line">print(feature.shape, label)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">torchvision</span>.<span class="title">datasets</span>.<span class="title">mnist</span>.<span class="title">MNIST</span>'&gt;</span></span><br><span class="line"><span class="class">60000 10000</span></span><br><span class="line"><span class="class"><span class="title">torch</span>.<span class="title">Size</span><span class="params">([<span class="number">1</span>, <span class="number">28</span>, <span class="number">28</span>])</span> 5</span></span><br></pre></td></tr></table></figure>
+<h2 id="torchvision-models"><a href="#torchvision-models" class="headerlink" title="torchvision.models"></a>torchvision.models</h2><p>models包含了以下的模型</p>
+<ul>
+<li>AlexNet</li>
+<li>VGG</li>
+<li>ResNet</li>
+<li>SqueezeNet</li>
+<li>DenseNet</li>
+<li>Inception v3</li>
+<li>GoogLeNet</li>
+</ul>
+<p>可以随机参数初始化一个模型</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torchvision.models <span class="keyword">as</span> models</span><br><span class="line"></span><br><span class="line">resnet18 = models.resnet18()</span><br><span class="line">alexnet = models.alexnet()</span><br><span class="line">vgg16 = models.vgg16()</span><br><span class="line">squeezenet = models.squeezenet1_0()</span><br><span class="line">densenet = models.densenet161()</span><br></pre></td></tr></table></figure>
+<p>此外还提供了预训练的的模型，构造函数里添加<code>pretrained=True</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torchvision.models <span class="keyword">as</span> models</span><br><span class="line"></span><br><span class="line">resnet18 = models.resnet18(pretrained=<span class="literal">True</span>)</span><br><span class="line">alexnet = models.alexnet(pretrained=<span class="literal">True</span>)</span><br><span class="line">squeezenet = models.squeezenet1_0(pretrained=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p>所有的预训练模型期待输入同样标准化的数据，例如mini-baches 包括形似(3*H*W)的3通道的RGB图像，H,W最少是224。</p>
+<p>图像的范围必须在[0,1]之间，然后使用 mean=[0.485, 0.456, 0.406] and std=[0.229, 0.224, 0.225]  进行标准化。</p>
+<p><a href="https://github.com/pytorch/examples/blob/42e5b996718797e45c46a25c55b031e6768f8440/imagenet/main.py#L89-L101" target="_blank" rel="noopener">相关例子</a></p>
+<h2 id="torchvision-transforms"><a href="#torchvision-transforms" class="headerlink" title="torchvision.transforms"></a>torchvision.transforms</h2><p>变换为常用的图像变换，可以通过<code>Compose</code>一起使用。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">transforms.Compose([transforms.CenterCrop(<span class="number">10</span>), transforms.ToTensor()])</span><br></pre></td></tr></table></figure>
+<h3 id="在PIL格式图片上的转换"><a href="#在PIL格式图片上的转换" class="headerlink" title="在PIL格式图片上的转换"></a>在PIL格式图片上的转换</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">torchivision</span>.<span class="title">transforms</span>.<span class="title">CenterCrop</span><span class="params">(size)</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>作用</strong>：剪切并返回PIL图片上中心区域<br><strong>参数</strong>：size为序列或者整形——输出的中心区域大小。size为(h, w)，size为整数时，则为(size, szie)。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">torchvision</span>.<span class="title">transforms</span>.<span class="title">ColorJitter</span><span class="params">(brightness=<span class="number">0</span>, contrast=<span class="number">0</span>,saturation=<span class="number">0</span>,hue=<span class="number">0</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>作用</strong>：随机改变图片的亮度、对比度和饱和度<br><strong>参数</strong>：</p>
+<ul>
+<li>brightness(亮度，float类型)——调整亮度的程度，亮度因子(brightness_factor)从 [max(0,1-brightness), 1+brightness] 中均匀选取。</li>
+<li>contrast(对比度，float类型)——调整对比度的程度，对比度因子(contrast_factor)从 [max(0,1-contrast),1+contrast] 中均匀选取。</li>
+<li>saturation(饱和度，float类型)——调整饱和度的程度，饱和度因子(saturation_factor) [max(0,1-saturation),1+saturation] 中均匀选取。</li>
+<li>hue(色相，float类型) —— 调整色相的程度，色相因子(hue_factor)从 [-hue,hue] 等均匀选择, 其中hue的大小为 [0, 0.5]。</li>
+</ul>
+<p><strong>对比度</strong>：对比度指不同颜色之间的差别。对比度越大，不同颜色之间的反差越大，所谓黑白分明，对比度过大，图像就会显得很刺眼。对比度越小，不同颜色之间的反差就越小。<br><strong>亮度</strong>：亮度是指照射在景物或者图像上光线的明暗程度，图像亮度增加时，会显得刺眼或耀眼，亮度越小，会显得灰暗。<br><strong>色相</strong>：色相就是颜色，调整色相就是调整景物的颜色。<br><strong>饱和度</strong>：饱和度指图像颜色的浓度。饱和度越高，颜色越饱满，所谓的青翠欲滴的感觉。饱和度越低，颜色就会越陈旧，惨淡，饱和度为0时，图像就为灰度图像。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">torchvision</span>.<span class="title">transforms</span>.<span class="title">FiveCrop</span><span class="params">(size)</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>作用</strong>：将给定的PIL图像剪裁成四个角落区域和中心区域，返回的是一个图像元组(tuple of imgae),所以输入与输出的数量不匹配。<br><strong>参数</strong>：size为序列或者整形——输出的中心区域大小。size为(h, w)，size为整数时，则为(size, szie)。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">torchvision</span>.<span class="title">transforms</span>.<span class="title">Grayscale</span><span class="params">(num_output_channels=<span class="number">1</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>作用</strong>：将图片转成灰度图<br><strong>参数</strong>：num_output_channels(int) ——　(1或者3)，输出图片的通道数量。<br>如果num_output_channels=1, 返回的图片为单通道. 如果 num_output_channels=3,返回的图片为3通道图片，且r=g=b。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">torchvision</span>.<span class="title">transforms</span>.<span class="title">Pad</span><span class="params">(padding, fill=<span class="number">0</span>, padding_mode=‘constant’)</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>作用</strong>：对给定的PIL图像的边缘进行填充，填充的数值为给定填充数值<br><strong>参数</strong>：</p>
+<ul>
+<li>padding(int或者tuple)——填充每一个边界。如果只输入了一个int类型的数值，那么这个数值会被用来填充所有的边界，表示填充的宽度多少。如果输入的是tuple且长度为2，那么俩个数值分别被用于填充left/right 和 top/bottom。如果输入的数组为4，那么分别被用来填充left, top ,right 和 bottom边界。</li>
+<li>fill (int 或者 tuple) ——　填充的像素的数值为fill。默认为0，如果输入的元组的长度为3，那么分别被用来填充R,G,B通道。这个数值当padding_mode 等于‘constant’　的时候才会被使用。</li>
+<li>padding_mode (string) ——　填充的类型，必须为：constant, edge, reflect or symmetric，默认为 constant。<br>constant: 以常量值进行填充，常量值由 fill 确定。<br>edge: 用图片边界最后一个值进行填充。<br>reflect: pads with reflection of image without repeating the last value on the edge (这句不知怎么翻译，看下面例子)<br>例子: 用俩个元素填充[1,2,3,4], 将会返回[3,2,1,2,3,4,3,2]<br>symmetric: pads with reflection of image repeating the last value on the edge<br>例子：用俩个函数元素填充 [1,2,3,4]，将会返回[2,1,1,2,3,4,4,3]</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">torchvision</span>.<span class="title">transforms</span>.<span class="title">RandomAffine</span><span class="params">(degrees, translate=None, scale=None)</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>作用</strong>：<br>保持中心不变的对图片进行随机仿射变化<br><strong>参数</strong>：</p>
+<ul>
+<li>degree (旋转，squence或者float或者int) ——　旋转的角度范围。如果角度是数值而不是类似于(min,max)的序列，那么将会转换成(-degree, +degree)序列。设为0则取消旋转。</li>
+<li>transalate (平移，tuple，可选)　——　数组，其中元素为代表水平和垂直变换的最大绝对分数。例如translate=(a,b),那么水平位移数值为从(-w*a, w*a)随机采样的，同时垂直位移是从(-h*b, h*b)随机采样的。默认情况下没有平移。</li>
+<li>scale (缩放，tuple, 可选)　——　缩放因子区间。若scale=(a,b), 则缩放的值在a&lt;=scale&lt;=b 随机采样。默认情况下没有缩放。</li>
+<li>shear (错切，sequence 或者 float 或者 int, 可选)　——　错切的程度。如果错切的程度是一个值，那么将会转换为序列即(—degree, +degree)。默认情况下不使用错切。</li>
+<li>resample ({PIL.Image.NEAREST, PIL.Image.BILINEAR, PIL.Image.BICUBIC}, 可选)。</li>
+<li>fillcolor(整型) —— 可选择的在输出图片中填充变换以外的区域。(Pillow&gt;=5.0.0)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">torchvision</span>.<span class="title">transforms</span>.<span class="title">RandomApply</span><span class="params">(transforms, p=<span class="number">0.5</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>作用</strong>：随机选取变换中(各种变换存储在列表中)的其中一个，同时给定一定的概率<br><strong>参数</strong>：</p>
+<ul>
+<li>transforms: 变换（list或者tuple） ——　转换的列表</li>
+<li>p: (float 类型) —— 概率,选取某个变化需要的概率</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">torchvision.transforms.Resize(size,interpolation=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>作用</strong>：将输入的PIL图片转换成给定的尺寸的大小<br><strong>参数</strong>：</p>
+<ul>
+<li>size(sequence 或者 int)　——　需要输出的图片的大小。如果size是类似于(h,w)的序列，输出的尺寸将会跟(h,w)一致。如果size是整型，图片较小的边界将会被置为这个尺寸。例如，如果height-&gt;width, 图片将会被置为 (size*height/width, size)</li>
+<li>Interpolation (int, 可选) —— 默认为 PIL.Image.BILINEAR</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">torch</span><br></pre></td></tr></table></figure>
+<h3 id="在torch-Tensor上的转换"><a href="#在torch-Tensor上的转换" class="headerlink" title="在torch.*Tensor上的转换"></a>在torch.*Tensor上的转换</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">torchvision</span>.<span class="title">transforms</span>.<span class="title">Normalize</span><span class="params">(mean,std)</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>作用</strong>：用均值和标准差对张量图像进行标准化处理。给定n通道的均值(M1, … , Mn) 和标准差(S1, … ,Sn), 这个变化将会归一化根据均值和标准差归一化每个通道值。例如，input[channel] = (input[channel]-mean[channel])/std(channel)</p>
+<p><strong>参数</strong>：</p>
+<ul>
+<li>mean (squence) ——　每个通道的均值</li>
+<li>std (sequence) —— 每个通道的标准差</li>
+</ul>
+<h3 id="类型转换变换"><a href="#类型转换变换" class="headerlink" title="类型转换变换"></a>类型转换变换</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">torchvision</span>.<span class="title">transforms</span>.<span class="title">ToPILImage</span><span class="params">(mode=None)</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>作用</strong>：将tensor类型或者ndarray转换成PIL图片，将 C*H*W大小的torch.<em>Tensor或者H\</em>W*C 大小的numpy矩阵转成PIL图片。<br><strong>参数</strong>：如果mode=None，则有一下假设</p>
+<ul>
+<li>如果输入为4个通道，mode为<code>RGBA</code></li>
+<li>如果输入为3个通道，mode为<code>RGB</code></li>
+<li>如果输入为2个通道，mode为<code>LA</code></li>
+<li>如果输入为1个通道，mode有数据的类型决定（<code>int</code>,<code>float</code>）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">torchvision</span>.<span class="title">transforms</span>.<span class="title">ToTensor</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>作用</strong>：将PIL图像和numpy array转换为tensor</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://www.cnblogs.com/yjphhw/p/9773333.html" target="_blank" rel="noopener">https://www.cnblogs.com/yjphhw/p/9773333.html</a><br><a href="https://pytorch.org/docs/stable/torchvision" target="_blank" rel="noopener">https://pytorch.org/docs/stable/torchvision</a><br><a href="https://blog.csdn.net/Hansry/article/details/84071316" target="_blank" rel="noopener">https://blog.csdn.net/Hansry/article/details/84071316</a></p>
+]]></content>
+      <tags>
+        <tag>torchvision</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown 语法学习</title>
+    <url>/2020/01/21/markdown-%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。<br><a id="more"></a><br>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。<br>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。<br>Markdown 编写的文档后缀为 .md, .markdown。</p>
+<h2 id="1-Markdown-标题"><a href="#1-Markdown-标题" class="headerlink" title="1.Markdown 标题"></a>1.Markdown 标题</h2><p>可以通过设置#的个数来表示标题大小，#的个数对应标题大小<br>一般在#后加一个空格在写文字</p>
+<p>示例：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"><span class="section">### 三级标题</span></span><br><span class="line"><span class="section">#### 四级标题</span></span><br><span class="line"><span class="section">##### 五级标题</span></span><br><span class="line"><span class="section">###### 六级标题</span></span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><hr>
+<h2 id="2-Markdown-段落格式"><a href="#2-Markdown-段落格式" class="headerlink" title="2 Markdown 段落格式"></a>2 Markdown 段落格式</h2><h3 id="2-1-字体"><a href="#2-1-字体" class="headerlink" title="2.1 字体"></a>2.1 字体</h3><p>加粗的文字左右用两个*包围<br>斜体的文字左右用一个*包围<br>斜体加粗的文字左右用三个*包围<br>删除线的文字左右用两个~包围</p>
+<p>示例：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="strong">**hello world 加粗**</span></span><br><span class="line"><span class="emphasis">*hello world 斜体*</span></span><br><span class="line"><span class="strong">***hello world 斜体加粗**</span>*</span><br><span class="line">~~hello world 删除线~~</span><br></pre></td></tr></table></figure>
+<p>效果如下：<br><strong>hello world 加粗</strong><br><em>hello world 斜体</em><br><strong><em>hello world 斜体加粗</em></strong><br><del>hello world 删除线</del></p>
+<h3 id="2-2-分隔线"><a href="#2-2-分隔线" class="headerlink" title="2.2 分隔线"></a>2.2 分隔线</h3><p>你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线。<br>不过一般推荐用—-</p>
+<p>示例：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"><span class="emphasis">***</span></span><br><span class="line"><span class="bullet">* </span><span class="emphasis">* *</span></span><br><span class="line"><span class="bullet">- </span>- -</span><br><span class="line">-------</span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<h3 id="2-3-下划线"><a href="#2-3-下划线" class="headerlink" title="2.3 下划线"></a>2.3 下划线</h3><p>下划线可以通过 HTML 的 <code>\&lt;u&gt;</code> 标签来实现</p>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">u</span>&gt;</span>hello world 下划线<span class="tag">&lt;/<span class="name">u</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-4-脚注"><a href="#2-4-脚注" class="headerlink" title="2.4 脚注"></a>2.4 脚注</h3><p>脚注是对文本的表示说明</p>
+<p>示例：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[^要注明的文本]</span><br></pre></td></tr></table></figure>
+<p>效果如下：<br>创建脚注格式类似这样 <sup><a href="#fn_hello" id="reffn_hello">hello</a></sup>。<br><sup><a href="#fn_hello" id="reffn_hello">hello</a></sup>: hello world！！！</p>
+<h2 id="3-Markdown-列表"><a href="#3-Markdown-列表" class="headerlink" title="3 Markdown 列表"></a>3 Markdown 列表</h2><p>Markdown支持有序列表和无序列表</p>
+<h3 id="3-1-无序列表"><a href="#3-1-无序列表" class="headerlink" title="3.1 无序列表"></a>3.1 无序列表</h3><p>无序列表使用星号(<code>*</code>)、加号(<code>+</code>)、减号(<code>-</code>)作为标记。<br>注意要符号后要跟一个空格<br>示例：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">* </span>第一项</span><br><span class="line"><span class="bullet">* </span>第二项</span><br><span class="line"><span class="bullet">* </span>第三项</span><br><span class="line"></span><br><span class="line"><span class="bullet">+ </span>第一项</span><br><span class="line"><span class="bullet">+ </span>第二项</span><br><span class="line"><span class="bullet">+ </span>第三项</span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span>第一项</span><br><span class="line"><span class="bullet">- </span>第二项</span><br><span class="line"><span class="bullet">- </span>第三项</span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<ul>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ul>
+<ul>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ul>
+<ul>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ul>
+<h3 id="3-2-有序列表"><a href="#3-2-有序列表" class="headerlink" title="3.2 有序列表"></a>3.2 有序列表</h3><p>有序列表使用数字并加上(<code>.</code>)号来表示<br>示例：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1. </span>第一项</span><br><span class="line"><span class="bullet">2. </span>第二项</span><br><span class="line"><span class="bullet">3. </span>第三项</span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<ol>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ol>
+<h3 id="3-3-列表嵌套"><a href="#3-3-列表嵌套" class="headerlink" title="3.3 列表嵌套"></a>3.3 列表嵌套</h3><p>有序列表和无序列表可以相会嵌套<br>列表嵌套只需在子列表中的选项添加三个空格即可</p>
+<p>示例：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1. </span>一级有序列表内容</span><br><span class="line"><span class="bullet">   * </span>二级无序列表内容</span><br><span class="line"><span class="bullet">   * </span>二级无序列表内容</span><br><span class="line"><span class="bullet">2. </span>一级有序列表内容</span><br><span class="line"><span class="bullet">   * </span>二级无序列表内容</span><br><span class="line"><span class="bullet">   * </span>二级无序列表内容</span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<ol>
+<li>一级有序列表内容<ul>
+<li>二级无序列表内容</li>
+<li>二级无序列表内容</li>
+</ul>
+</li>
+<li>一级有序列表内容<ul>
+<li>二级无序列表内容</li>
+<li>二级无序列表内容</li>
+</ul>
+</li>
+</ol>
+<h2 id="4-Markdown-区块"><a href="#4-Markdown-区块" class="headerlink" title="4 Markdown 区块"></a>4 Markdown 区块</h2><p>Markdown区块引用在段落开头使用<code>&gt;</code>符号，后面紧跟一个空格<br>嵌套引用在前面多加一个<code>&gt;</code></p>
+<p>示例：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="quote">&gt; 第一行</span></span><br><span class="line"><span class="quote">&gt; 第二行</span></span><br><span class="line"><span class="quote">&gt; 第三行</span></span><br><span class="line"><span class="quote">&gt; &gt; 第四行</span></span><br><span class="line"><span class="quote">&gt; &gt; 第五行</span></span><br><span class="line"><span class="quote">&gt; &gt; 第六行</span></span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<blockquote>
+<p>第一行<br>第二行<br>第三行</p>
+<blockquote>
+<p>第四行<br>第五行<br>第六行</p>
+</blockquote>
+</blockquote>
+<h2 id="5-Markdown-图片"><a href="#5-Markdown-图片" class="headerlink" title="5 Markdown 图片"></a>5 Markdown 图片</h2><p><strong>基本语法：</strong><code>![图片alt](图片地址 &#39;&#39;图片title&#39;&#39;)</code></p>
+<p>图片alt就是显示在图片下面的文字，相当于对图片内容的解释。<br>图片title是图片的标题，当鼠标移到图片上时显示的内容。<br>title可加可不加。</p>
+<h3 id="5-1-本地引用"><a href="#5-1-本地引用" class="headerlink" title="5.1 本地引用"></a>5.1 本地引用</h3><p>可以放在文章所在的目录，文章的目录可以通过配置_config.yml来生成。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>将_config.yml文件中的配置项post_asset_folder设为true后，执行命令$ hexo new post_name，在source/_posts中会生成文章post_name.md和同名文件夹post_name。将图片资源放在post_name中，文章就可以使用相对路径引用图片资源了。<br>示例：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">earth</span>](<span class="link">/markdown-语法学习/earth.jpg "earth"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/markdown-语法学习/earth.jpg" alt="earth" title="earth"></p>
+<p>但在本地markdown文件有效，部署到浏览器显示不知道为什么无用</p>
+<h3 id="5-2-使用官方提供的标签"><a href="#5-2-使用官方提供的标签" class="headerlink" title="5.2 使用官方提供的标签"></a>5.2 使用官方提供的标签</h3><blockquote>
+<p>通过常规的 markdown 语法和相对路径来引用图片和其它资源可能会导致它们在存档页或者主页上显示不正确。在Hexo 2时代，社区创建了很多插件来解决这个问题。但是，随着Hexo 3 的发布，许多新的标签插件被加入到了核心代码中。这使得你可以更简单地在文章中引用你的资源。</p>
+</blockquote>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% asset_img universe.jpg universe %&#125;</span><br></pre></td></tr></table></figure>
+<p>效果如下:<br><img src="/2020/01/21/markdown-%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0/universe.jpg" class="" title="universe"></p>
+<h2 id="6-表格"><a href="#6-表格" class="headerlink" title="6 表格"></a>6 表格</h2><p>Markdown 制作表格使用 | 来分隔不同的单元格，使用 - 来分隔表头和其他行。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>表头</th>
+<th style="text-align:center">表头</th>
+<th style="text-align:right">表头</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内容</td>
+<td style="text-align:center">内容</td>
+<td style="text-align:right">内容</td>
+</tr>
+<tr>
+<td>内容</td>
+<td style="text-align:center">内容</td>
+<td style="text-align:right">内容</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>第二行分割表头和内容。<br><code>-</code>号 有一个就行，为了对齐，多加了几个<br>文字默认居左<br><code>-</code>两边加：表示文字居中<br><code>-</code>右边加：表示文字居右<br>注：原生的语法两边都要用 <code>|</code> 包起来。此处省略</p>
+<p>示例：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">姓名|成绩|排名</span><br><span class="line">----|:--:|--:</span><br><span class="line">小明|98|1</span><br><span class="line">小王|90|2</span><br><span class="line">小赵|88|3</span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">姓名</th>
+<th style="text-align:center">成绩</th>
+<th style="text-align:center">排名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">小红</td>
+<td style="text-align:center">98</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">小赵</td>
+<td style="text-align:center">60</td>
+<td style="text-align:center">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="7-超链接"><a href="#7-超链接" class="headerlink" title="7 超链接"></a>7 超链接</h2><p>语法：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="string">超链接名</span>](<span class="link">超链接地址 "超链接title"</span>)</span><br><span class="line">title可加可不加</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="string">简书</span>](<span class="link">http://jianshu.com</span>)</span><br><span class="line">[<span class="string">百度</span>](<span class="link">http://baidu.com</span>)</span><br></pre></td></tr></table></figure>
+<p>效果如下：<br><a href="http://jianshu.com" target="_blank" rel="noopener" title="简书">简书</a><br><a href="http://baidu.com" target="_blank" rel="noopener" title="百度">百度</a></p>
+<h2 id="9-代码"><a href="#9-代码" class="headerlink" title="9 代码"></a>9 代码</h2><h3 id="9-1-单行代码"><a href="#9-1-单行代码" class="headerlink" title="9.1 单行代码"></a>9.1 单行代码</h3><p>单行代码之间用一个反引号包起来<br>示例：<br><code>hello world</code></p>
+<h3 id="9-2-多行代码"><a href="#9-2-多行代码" class="headerlink" title="9.2 多行代码"></a>9.2 多行代码</h3><p>代码块之间分别用三个反引号包起来，且两边的反引号单独占一行<br>并且可以指定一种语言</p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(&#96;&#96;&#96;) python</span><br><span class="line">import sys</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">print(&quot;hello world&quot;)</span><br><span class="line">(&#96;&#96;&#96;)</span><br></pre></td></tr></table></figure>
+<p>其中括号为了防止```发生作用</p>
+<p>效果如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">print(<span class="string">"hello world"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="10-公式"><a href="#10-公式" class="headerlink" title="10 公式"></a>10 公式</h2><p>当你需要在编辑器中插入数学公式时，可以使用两个美元符 $$ 包裹 TeX 或 LaTeX 格式的数学公式来实现。提交后，问答和文章页会根据需要加载 Mathjax 对数学公式进行渲染。</p>
+<p><strong>如何修改配置可看</strong><br><a href="https://blog.csdn.net/Aoman_Hao/article/details/81381507" target="_blank" rel="noopener">解决方法1</a>, <a href="https://blog.csdn.net/weixin_43318626/article/details/89407031" target="_blank" rel="noopener">解决方法2</a></p>
+<p>示例</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$$</span><br><span class="line">f(x) &#x3D; \frac&#123;1&#125;&#123;\sqrt&#123;2\pi&#125;\sigma&#125;e^&#123;-\frac&#123;x^2&#125;&#123;2\sigma^2&#125;&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<script type="math/tex; mode=display">
+f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{x^2}{2\sigma^2}}</script><h2 id="11-流程图"><a href="#11-流程图" class="headerlink" title="11 流程图"></a>11 流程图</h2><p>等有时间再写</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://www.runoob.com/markdown/md-lists.html" target="_blank" rel="noopener">https://www.runoob.com/markdown/md-lists.html</a><br><a href="https://www.jianshu.com/p/191d1e21f7ed" target="_blank" rel="noopener">https://www.jianshu.com/p/191d1e21f7ed</a><br><a href="https://blog.csdn.net/oDianZi1234567/article/details/89323982" target="_blank" rel="noopener">https://blog.csdn.net/oDianZi1234567/article/details/89323982</a></p>
+]]></content>
+      <tags>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+</search>
