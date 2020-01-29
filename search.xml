@@ -129,6 +129,9 @@
 <p><strong>作用</strong>：将PIL图像和numpy array转换为tensor</p>
 <h2 id="4-参考文献"><a href="#4-参考文献" class="headerlink" title="4 参考文献"></a>4 参考文献</h2><p><a href="https://www.cnblogs.com/yjphhw/p/9773333.html" target="_blank" rel="noopener">https://www.cnblogs.com/yjphhw/p/9773333.html</a><br><a href="https://pytorch.org/docs/stable/torchvision" target="_blank" rel="noopener">https://pytorch.org/docs/stable/torchvision</a><br><a href="https://blog.csdn.net/Hansry/article/details/84071316" target="_blank" rel="noopener">https://blog.csdn.net/Hansry/article/details/84071316</a></p>
 ]]></content>
+      <categories>
+        <category>pytorch</category>
+      </categories>
       <tags>
         <tag>torchvision</tag>
       </tags>
@@ -301,6 +304,9 @@
 f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{x^2}{2\sigma^2}}</script><h2 id="11-流程图"><a href="#11-流程图" class="headerlink" title="11 流程图"></a>11 流程图</h2><p>等有时间再写</p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://www.runoob.com/markdown/md-lists.html" target="_blank" rel="noopener">https://www.runoob.com/markdown/md-lists.html</a><br><a href="https://www.jianshu.com/p/191d1e21f7ed" target="_blank" rel="noopener">https://www.jianshu.com/p/191d1e21f7ed</a><br><a href="https://blog.csdn.net/oDianZi1234567/article/details/89323982" target="_blank" rel="noopener">https://blog.csdn.net/oDianZi1234567/article/details/89323982</a></p>
 ]]></content>
+      <categories>
+        <category>markdown</category>
+      </categories>
       <tags>
         <tag>markdown</tag>
       </tags>
