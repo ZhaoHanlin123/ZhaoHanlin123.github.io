@@ -11,7 +11,7 @@
 <li>torchvision.utils: 其他的一些有用的方法。</li>
 </ul>
 <p>具体代码可以参考<a href="https://github.com/pytorch/vision/tree/master/torchvision" target="_blank" rel="noopener">github</a></p>
-<h2 id="1-torchvision-datasets"><a href="#1-torchvision-datasets" class="headerlink" title="1 torchvision.datasets"></a>1 torchvision.datasets</h2><p>所有数据集都是torch.utils.data.Dataset的子类，都含有<code>__getitem__</code>和<code>__len__</code>方法。<br>因此，它们都可以传递给torch.utils.data.DataLoader，使用torch.multiprocessing可以并行加载多个样本。例如：</p>
+<h2 id="1-torchvision-datasets"><a href="#1-torchvision-datasets" class="headerlink" title="1 torchvision.datasets"></a>1 torchvision.datasets</h2><h3 id="1-1-下载以后的数据集"><a href="#1-1-下载以后的数据集" class="headerlink" title="1.1 下载以后的数据集"></a>1.1 下载以后的数据集</h3><p>所有数据集都是torch.utils.data.Dataset的子类，都含有<code>__getitem__</code>和<code>__len__</code>方法。<br>因此，它们都可以传递给torch.utils.data.DataLoader，使用torch.multiprocessing可以并行加载多个样本。例如：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">imagenet_data = torchvision.datasets.ImageNet(<span class="string">'path/to/imagenet_root/'</span>)</span><br><span class="line">data_loader = torch.utils.data.DataLoader(imagenet_data,</span><br><span class="line">                                          batch_size=<span class="number">4</span>,</span><br><span class="line">                                          shuffle=<span class="literal">True</span>,</span><br><span class="line">                                          num_workers=args.nThreads)</span><br></pre></td></tr></table></figure>
 <p>包括以下数据集</p>
 <ul>
@@ -46,6 +46,30 @@
 <p>通过<code>len()</code>获得数据集大小，通过下标来获得具体的个数</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(type(MNIST_train))</span><br><span class="line">print(len(MNIST_train), len(MNIST_test))</span><br><span class="line"></span><br><span class="line">feature, label = MNIST_train[<span class="number">0</span>]</span><br><span class="line">print(feature.shape, label)</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">torchvision</span>.<span class="title">datasets</span>.<span class="title">mnist</span>.<span class="title">MNIST</span>'&gt;</span></span><br><span class="line"><span class="class">60000 10000</span></span><br><span class="line"><span class="class"><span class="title">torch</span>.<span class="title">Size</span><span class="params">([<span class="number">1</span>, <span class="number">28</span>, <span class="number">28</span>])</span> 5</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-2-ImageFolder"><a href="#1-2-ImageFolder" class="headerlink" title="1.2 ImageFolder"></a>1.2 ImageFolder</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">root&#x2F;dog&#x2F;xxx.png</span><br><span class="line">root&#x2F;dog&#x2F;xxy.png</span><br><span class="line">root&#x2F;dog&#x2F;xxz.png</span><br><span class="line"></span><br><span class="line">root&#x2F;cat&#x2F;123.png</span><br><span class="line">root&#x2F;cat&#x2F;nsdf3.png</span><br><span class="line">root&#x2F;cat&#x2F;asd932_.png</span><br></pre></td></tr></table></figure>
+<p>上面表示数据集已经按类分好，在一个文件夹内是同一类的图片。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torchvision.datasets <span class="keyword">as</span> dset</span><br><span class="line">dset.ImageFolder(root=<span class="string">"root folder path"</span>, [transform, target_transform])</span><br></pre></td></tr></table></figure>
+<p><strong>参数</strong>：</p>
+<ul>
+<li>root ： 指定图片存储的路径，在下面的例子中是’./data/dogcat_2’</li>
+<li>transform： 一个函数，原始图片作为输入，返回一个转换后的图片。</li>
+<li>target_transform - 一个函数，输入为target，输出对其的转换。例子，输入的是图片标注的string，输出为word的索引。</li>
+</ul>
+<p>返回有以下成员变量:</p>
+<ul>
+<li>self.classes - 用一个list保存 类名</li>
+<li>self.class_to_idx - 类名对应的 索引</li>
+<li>self.imgs - 保存(img-path, class) tuple的list</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torchvision.datasets <span class="keyword">as</span> dset</span><br><span class="line">dataset = dset.ImageFolder(<span class="string">'./data/dogcat_2'</span>) <span class="comment">#没有transform，先看看取得的原始图像数据</span></span><br><span class="line">print(dataset.classes)  <span class="comment">#根据分的文件夹的名字来确定的类别</span></span><br><span class="line">print(dataset.class_to_idx) <span class="comment">#按顺序为这些类别定义索引为0,1...</span></span><br><span class="line">print(dataset.imgs) <span class="comment">#返回从所有文件夹中得到的图片的路径以及其类别</span></span><br></pre></td></tr></table></figure>
+<p>返回</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">[<span class="string">'cat'</span>, <span class="string">'dog'</span>]</span><br><span class="line">&#123;<span class="string">'cat'</span>: <span class="number">0</span>, <span class="string">'dog'</span>: <span class="number">1</span>&#125;</span><br><span class="line">[(<span class="string">'./data/dogcat_2/cat/cat.12484.jpg'</span>, <span class="number">0</span>), (<span class="string">'./data/dogcat_2/cat/cat.12485.jpg'</span>, <span class="number">0</span>), (<span class="string">'./data/dogcat_2/cat/cat.12486.jpg'</span>, <span class="number">0</span>), (<span class="string">'./data/dogcat_2/cat/cat.12487.jpg'</span>, <span class="number">0</span>), (<span class="string">'./data/dogcat_2/dog/dog.12496.jpg'</span>, <span class="number">1</span>), (<span class="string">'./data/dogcat_2/dog/dog.12497.jpg'</span>, <span class="number">1</span>), (<span class="string">'./data/dogcat_2/dog/dog.12498.jpg'</span>, <span class="number">1</span>), (<span class="string">'./data/dogcat_2/dog/dog.12499.jpg'</span>, <span class="number">1</span>)]</span><br></pre></td></tr></table></figure>
+<p>如果在数据下面又添加了一个类型’others’，那么访问类型的时候返回的就是：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">[<span class="string">'cat'</span>, <span class="string">'dog'</span>, <span class="string">'others'</span>]</span><br><span class="line">&#123;<span class="string">'cat'</span>: <span class="number">0</span>, <span class="string">'dog'</span>: <span class="number">1</span>, <span class="string">'others'</span>: <span class="number">2</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>查看得到的图片数据：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#从返回结果可见得到的数据仍是PIL Image对象</span></span><br><span class="line">print(dataset[<span class="number">0</span>])</span><br><span class="line">print(dataset[<span class="number">0</span>][<span class="number">0</span>])</span><br><span class="line">print(dataset[<span class="number">0</span>][<span class="number">1</span>]) <span class="comment">#得到的是类别0，即cat</span></span><br></pre></td></tr></table></figure>
+<p>返回</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">(&lt;PIL.Image.Image image mode=RGB size=<span class="number">497</span>x500 at <span class="number">0x11D99A9B0</span>&gt;, <span class="number">0</span>)</span><br><span class="line">&lt;PIL.Image.Image image mode=RGB size=<span class="number">497</span>x500 at <span class="number">0x11DD24278</span>&gt;</span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
 <h2 id="2-torchvision-models"><a href="#2-torchvision-models" class="headerlink" title="2 torchvision.models"></a>2 torchvision.models</h2><p>models包含了以下的模型</p>
 <ul>
 <li>AlexNet</li>
@@ -127,7 +151,7 @@
 </ul>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">torchvision</span>.<span class="title">transforms</span>.<span class="title">ToTensor</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
 <p><strong>作用</strong>：将PIL图像和numpy array转换为tensor</p>
-<h2 id="4-参考文献"><a href="#4-参考文献" class="headerlink" title="4 参考文献"></a>4 参考文献</h2><p><a href="https://www.cnblogs.com/yjphhw/p/9773333.html" target="_blank" rel="noopener">https://www.cnblogs.com/yjphhw/p/9773333.html</a><br><a href="https://pytorch.org/docs/stable/torchvision" target="_blank" rel="noopener">https://pytorch.org/docs/stable/torchvision</a><br><a href="https://blog.csdn.net/Hansry/article/details/84071316" target="_blank" rel="noopener">https://blog.csdn.net/Hansry/article/details/84071316</a></p>
+<h2 id="4-参考文献"><a href="#4-参考文献" class="headerlink" title="4 参考文献"></a>4 参考文献</h2><p><a href="https://www.cnblogs.com/yjphhw/p/9773333.html" target="_blank" rel="noopener">https://www.cnblogs.com/yjphhw/p/9773333.html</a><br><a href="https://pytorch.org/docs/stable/torchvision" target="_blank" rel="noopener">https://pytorch.org/docs/stable/torchvision</a><br><a href="https://blog.csdn.net/Hansry/article/details/84071316" target="_blank" rel="noopener">https://blog.csdn.net/Hansry/article/details/84071316</a><br><a href="https://www.cnblogs.com/wanghui-garcia/p/10649364.html" target="_blank" rel="noopener">https://www.cnblogs.com/wanghui-garcia/p/10649364.html</a></p>
 ]]></content>
       <categories>
         <category>pytorch</category>
