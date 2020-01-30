@@ -46,18 +46,27 @@
   };
 </script>
 
-  <meta name="description" content="Visual Studio Code（以下简称vscode）是一个轻量且强大的跨平台开源代码编辑器（IDE），支持Windows，OS X和Linux。内置JavaScript、TypeScript和Node.js支持，而且拥有丰富的插件生态系统，可通过安装插件来支持C++、C#、Python、PHP等其他语言。  Microsoft的C&#x2F;C++扩展是针对C&#x2F;C++代码编辑的，其中包括：  C&#x2F;">
+  <meta name="description" content="Visual Studio Code（以下简称vscode）是一个轻量且强大的跨平台开源代码编辑器（IDE），支持Windows，OS X和Linux。内置JavaScript、TypeScript和Node.js支持，而且拥有丰富的插件生态系统，可通过安装插件来支持C++、C#、Python、PHP等其他语言。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vscode配置C++环境">
 <meta property="og:url" content="http://yoursite.com/2020/01/30/vscode%E9%85%8D%E7%BD%AEC++%E7%8E%AF%E5%A2%83/index.html">
 <meta property="og:site_name" content="日常点滴">
-<meta property="og:description" content="Visual Studio Code（以下简称vscode）是一个轻量且强大的跨平台开源代码编辑器（IDE），支持Windows，OS X和Linux。内置JavaScript、TypeScript和Node.js支持，而且拥有丰富的插件生态系统，可通过安装插件来支持C++、C#、Python、PHP等其他语言。  Microsoft的C&#x2F;C++扩展是针对C&#x2F;C++代码编辑的，其中包括：  C&#x2F;">
+<meta property="og:description" content="Visual Studio Code（以下简称vscode）是一个轻量且强大的跨平台开源代码编辑器（IDE），支持Windows，OS X和Linux。内置JavaScript、TypeScript和Node.js支持，而且拥有丰富的插件生态系统，可通过安装插件来支持C++、C#、Python、PHP等其他语言。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2020/01/30/vscode%E9%85%8D%E7%BD%AEC++%E7%8E%AF%E5%A2%83/1.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/30/vscode%E9%85%8D%E7%BD%AEC++%E7%8E%AF%E5%A2%83/aa.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/30/vscode%E9%85%8D%E7%BD%AEC++%E7%8E%AF%E5%A2%83/3.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/30/vscode%E9%85%8D%E7%BD%AEC++%E7%8E%AF%E5%A2%83/4.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/30/vscode%E9%85%8D%E7%BD%AEC++%E7%8E%AF%E5%A2%83/5.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/30/vscode%E9%85%8D%E7%BD%AEC++%E7%8E%AF%E5%A2%83/6.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/30/vscode%E9%85%8D%E7%BD%AEC++%E7%8E%AF%E5%A2%83/7.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/30/vscode%E9%85%8D%E7%BD%AEC++%E7%8E%AF%E5%A2%83/8.png">
 <meta property="article:published_time" content="2020-01-30T13:26:12.000Z">
-<meta property="article:modified_time" content="2020-01-30T14:13:16.456Z">
+<meta property="article:modified_time" content="2020-01-30T15:35:47.419Z">
 <meta property="article:author" content="赵含霖">
 <meta property="article:tag" content="c++ vscode">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/01/30/vscode%E9%85%8D%E7%BD%AEC++%E7%8E%AF%E5%A2%83/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2020/01/30/vscode%E9%85%8D%E7%BD%AEC++%E7%8E%AF%E5%A2%83/">
 
@@ -230,7 +239,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-01-30 21:26:12 / 修改时间：22:13:16" itemprop="dateCreated datePublished" datetime="2020-01-30T21:26:12+08:00">2020-01-30</time>
+              <time title="创建时间：2020-01-30 21:26:12 / 修改时间：23:35:47" itemprop="dateCreated datePublished" datetime="2020-01-30T21:26:12+08:00">2020-01-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -257,14 +266,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>939</span>
+              <span>5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -277,9 +286,8 @@
 
       
         <blockquote>
-<p>Visual Studio Code（以下简称vscode）是一个轻量且强大的跨平台开源代码编辑器（IDE），支持Windows，OS X和Linux。内置JavaScript、TypeScript和Node.js支持，而且拥有丰富的插件生态系统，可通过安装插件来支持C++、C#、Python、PHP等其他语言。</p>
+<p>Visual Studio Code（以下简称vscode）是一个轻量且强大的跨平台开源代码编辑器（IDE），支持Windows，OS X和Linux。内置JavaScript、TypeScript和Node.js支持，而且拥有丰富的插件生态系统，可通过安装插件来支持C++、C#、Python、PHP等其他语言。<br><a id="more"></a><br>Microsoft的C/C++扩展是针对C/C++代码编辑的，其中包括：</p>
 </blockquote>
-<p>Microsoft的C/C++扩展是针对C/C++代码编辑的，其中包括：</p>
 <ul>
 <li>C/C++代码智能感知；</li>
 <li>C/C++代码调试（需要配合已安装的调试器）；</li>
@@ -293,10 +301,65 @@
 <li>在Windows命令行进入文件夹，使用命令code .打开文件夹，创建工作区；</li>
 <li>先打开VS Code，然后使用VS Code打开文件夹，创建工作区；</li>
 </ul>
-<p>我现在桌面创建<code>test</code>文件夹。然后右键点击文件夹，选择用VS code打开，也可以打开VS code后，点击左上角文件，选择打开文件夹，选择打开<code>test</code>文件夹。<br></p>
+<p>我现在桌面创建<code>test</code>文件夹。然后右键点击文件夹，选择用VS code打开，也可以打开VS code后，点击左上角文件，选择打开文件夹，选择打开<code>test</code>文件夹。<br><img src="/2020/01/30/vscode%E9%85%8D%E7%BD%AEC++%E7%8E%AF%E5%A2%83/1.png" class="" title="open"></p>
 <h2 id="2-创建代码"><a href="#2-创建代码" class="headerlink" title="2 创建代码"></a>2 创建代码</h2><p>在<code>test</code>文件夹下新文件，命名为<code>helloworld.cpp</code>，编辑测试代码</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"hello world\n"</span>;</span><br><span class="line">    system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="3-编译调制设置"><a href="#3-编译调制设置" class="headerlink" title="3 编译调制设置"></a>3 编译调制设置</h2><h3 id="3-1-配置编译器路径"><a href="#3-1-配置编译器路径" class="headerlink" title="3.1 配置编译器路径"></a>3.1 配置编译器路径</h3><p>使用<code>Ctrl+Shift+P</code>打开命令面板，输入<code>C/C++</code>，推荐列表中有UI方式和JSON格式的两种编辑配置方式，如图（这里我们选择<code>Edit configurations(JSON)</code>）<br></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"hello world\n"</span>;</span><br><span class="line">    system(<span class="string">"pause"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-编译调制设置"><a href="#3-编译调制设置" class="headerlink" title="3 编译调制设置"></a>3 编译调制设置</h2><h3 id="3-1-配置编译器路径"><a href="#3-1-配置编译器路径" class="headerlink" title="3.1 配置编译器路径"></a>3.1 配置编译器路径</h3><p>使用<code>Ctrl+Shift+P</code>打开命令面板，输入<code>C/C++</code>，推荐列表中有UI方式和JSON格式的两种编辑配置方式，如图（这里我们选择<code>Edit configurations(JSON)</code>）<br><img src="/2020/01/30/vscode%E9%85%8D%E7%BD%AEC++%E7%8E%AF%E5%A2%83/aa.png" class="" title="配置"></p>
+<p>VS Code会自动在工作区中的.vscode目录下创建c_cpp_properties.json文件，这个文件是一个JSON格式文件，<strong>用来指定编译器路径和语言标准</strong>，其原始内容如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"configurations"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"name"</span>: <span class="string">"Win32"</span>,</span><br><span class="line">            <span class="attr">"includePath"</span>: [</span><br><span class="line">                <span class="string">"$&#123;workspaceFolder&#125;/**"</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">"defines"</span>: [</span><br><span class="line">                <span class="string">"_DEBUG"</span>,</span><br><span class="line">                <span class="string">"UNICODE"</span>,</span><br><span class="line">                <span class="string">"_UNICODE"</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">"compilerPath"</span>: <span class="string">"D:\\software\\MinGW\\bin\\gcc.exe"</span>,</span><br><span class="line">            <span class="attr">"cStandard"</span>: <span class="string">"c11"</span>,</span><br><span class="line">            <span class="attr">"cppStandard"</span>: <span class="string">"c++17"</span>,</span><br><span class="line">            <span class="attr">"intelliSenseMode"</span>: <span class="string">"clang-x86"</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">"version"</span>: <span class="number">4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>compilerPath</code>：应修改为为当前系统中g++编译器（对C,为gcc）所在的路径，<br>因此我应该将其修改为:</p>
+  <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"D:\\software\\MinGW\\bin\\g++.exe"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>cStandard</code>, <code>cppStandard</code>：选择编译器使用的C/C++语言标准。  </p>
+</li>
+<li><code>intelliSenseMode</code>：是IntelliSense功能的设置，这里我们设置为gcc-x64，有助于IntelliSense功能根据编译器所在的路径来自动推断C/C++标准库头文件的路径，以提供正确的路径。</li>
+<li><code>includepath</code>：设置程序中包含不在当前工作区或者标准库路径中的头文件。</li>
+</ul>
+<p>最后完整配置</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"configurations"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"name"</span>: <span class="string">"Win32"</span>,</span><br><span class="line">            <span class="attr">"includePath"</span>: [</span><br><span class="line">                <span class="string">"$&#123;workspaceFolder&#125;/**"</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">"defines"</span>: [</span><br><span class="line">                <span class="string">"_DEBUG"</span>,</span><br><span class="line">                <span class="string">"UNICODE"</span>,</span><br><span class="line">                <span class="string">"_UNICODE"</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">"compilerPath"</span>: <span class="string">"D:\\software\\MinGW\\bin\\g++.exe"</span>,</span><br><span class="line">            <span class="attr">"cStandard"</span>: <span class="string">"c11"</span>,</span><br><span class="line">            <span class="attr">"cppStandard"</span>: <span class="string">"c++17"</span>,</span><br><span class="line">            <span class="attr">"intelliSenseMode"</span>: <span class="string">"gcc-x64"</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">"version"</span>: <span class="number">4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-创建构建任务"><a href="#3-2-创建构建任务" class="headerlink" title="3.2 创建构建任务"></a>3.2 创建构建任务</h3><p>在配置完gcc编译器路径后，需要创建一个tasks.json文件来告诉<strong>VS Code如何构建（编译）程序</strong>，此任务将调用gcc编译器基于源代码创建可执行文件。</p>
+<ol>
+<li>按<code>Ctrl+Shift+P</code>调出命令面板，输入<code>task</code>，选择<code>Tasks:Configure Default Build Task</code>。<img src="/2020/01/30/vscode%E9%85%8D%E7%BD%AEC++%E7%8E%AF%E5%A2%83/3.png" class=""></li>
+<li><p>选择<code>g++.exe build active file</code>，创建出task文件如下</p>
+<img src="/2020/01/30/vscode%E9%85%8D%E7%BD%AEC++%E7%8E%AF%E5%A2%83/4.png" class="">
+ <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="comment">// 有关 tasks.json 格式的文档，请参见</span></span><br><span class="line">    <span class="comment">// https://go.microsoft.com/fwlink/?LinkId=733558</span></span><br><span class="line">    <span class="attr">"version"</span>: <span class="string">"2.0.0"</span>,</span><br><span class="line">    <span class="attr">"tasks"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"shell"</span>,</span><br><span class="line">            <span class="attr">"label"</span>: <span class="string">"g++.exe build active file"</span>,</span><br><span class="line">            <span class="attr">"command"</span>: <span class="string">"D:\\software\\MinGW\\bin\\g++.exe"</span>,</span><br><span class="line">            <span class="attr">"args"</span>: [</span><br><span class="line">                <span class="string">"-g"</span>,</span><br><span class="line">                <span class="string">"$&#123;file&#125;"</span>,</span><br><span class="line">                <span class="string">"-o"</span>,</span><br><span class="line">                <span class="string">"$&#123;fileDirname&#125;\\$&#123;fileBasenameNoExtension&#125;.exe"</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">"options"</span>: &#123;</span><br><span class="line">                <span class="attr">"cwd"</span>: <span class="string">"D:\\software\\MinGW\\bin"</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">"problemMatcher"</span>: [</span><br><span class="line">                <span class="string">"$gcc"</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">"group"</span>: &#123;</span><br><span class="line">                <span class="attr">"kind"</span>: <span class="string">"build"</span>,</span><br><span class="line">                <span class="attr">"isDefault"</span>: <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 替换为</p>
+ <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="comment">// See https://go.microsoft.com/fwlink/?LinkId=733558 </span></span><br><span class="line"><span class="comment">// for the documentation about the tasks.json format</span></span><br><span class="line"><span class="attr">"version"</span>: <span class="string">"2.0.0"</span>,</span><br><span class="line"><span class="attr">"tasks"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"shell"</span>,</span><br><span class="line">        <span class="attr">"label"</span>: <span class="string">"g++"</span>, <span class="comment">//这里注意一下，见下文</span></span><br><span class="line">        <span class="attr">"command"</span>: <span class="string">"D:\\Environment\\MinGW\\bin\\g++.exe"</span>,</span><br><span class="line">        <span class="attr">"args"</span>: [</span><br><span class="line">            <span class="string">"-g"</span>,</span><br><span class="line">            <span class="string">"$&#123;file&#125;"</span>,</span><br><span class="line">            <span class="string">"-o"</span>,</span><br><span class="line">            <span class="string">"$&#123;fileDirname&#125;\\$&#123;fileBasenameNoExtension&#125;.exe"</span>,</span><br><span class="line">            <span class="string">"-ggdb3"</span>,   <span class="comment">// 生成和调试有关的信息</span></span><br><span class="line">            <span class="string">"-Wall"</span>,    <span class="comment">// 开启额外警告</span></span><br><span class="line">            <span class="string">"-static-libgcc"</span>,   <span class="comment">// 静态链接</span></span><br><span class="line">            <span class="string">"-std=c++17"</span>,       <span class="comment">// 使用c++17标准</span></span><br><span class="line">            <span class="string">"-finput-charset=UTF-8"</span>,    <span class="comment">//输入编译器文本编码 默认为UTF-8</span></span><br><span class="line">            <span class="string">"-fexec-charset=GB18030"</span>,   <span class="comment">//输出exe文件的编码</span></span><br><span class="line">            <span class="string">"-D _USE_MATH_DEFINES"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">"options"</span>: &#123;</span><br><span class="line">            <span class="attr">"cwd"</span>: <span class="string">"D:\\Environment\\MinGW\\bin"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"problemMatcher"</span>: [</span><br><span class="line">            <span class="string">"$gcc"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">"presentation"</span>: &#123;</span><br><span class="line">            <span class="attr">"echo"</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">"reveal"</span>: <span class="string">"always"</span>, <span class="comment">// 在“终端”中显示编译信息的策略，可以为always，silent，never</span></span><br><span class="line">             <span class="attr">"focus"</span>: <span class="literal">false</span>,</span><br><span class="line">             <span class="attr">"panel"</span>: <span class="string">"shared"</span> <span class="comment">// 不同的文件的编译信息共享一个终端面板</span></span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li><code>label</code>：指定该任务的名称，后续会在VS Code Command Palette中看到；</li>
+<li><code>command</code>：指定要运行的程序；</li>
+<li><code>args</code>：指定传递给gcc的命令行参数，注意这些参数必须按照编译器指定的顺序排列</li>
+</ul>
+<h3 id="3-3-配置调试设置"><a href="#3-3-配置调试设置" class="headerlink" title="3.3 配置调试设置"></a>3.3 配置调试设置</h3><p>通过<code>task.json</code>文件后，已经可以生成可执行文件<code>.exe</code>。，接下来我们<strong>配置调试设置</strong>，使得按下<strong>F5</strong>之后VS Code会自动启动<strong>gcc调试器（gdb.exe）</strong>。</p>
+<ol>
+<li>选择<code>调试</code>一栏，然后点击<code>设置</code>按钮：</li>
+<li>选择<code>C++(GDB/LLDB)</code><img src="/2020/01/30/vscode%E9%85%8D%E7%BD%AEC++%E7%8E%AF%E5%A2%83/5.png" class=""></li>
+<li>选择<code>g++.exe build and debug active file</code><img src="/2020/01/30/vscode%E9%85%8D%E7%BD%AEC++%E7%8E%AF%E5%A2%83/6.png" class=""></li>
+<li><p>选中后VS Code会自动在.vscode下生成launch.json文件，该文件指定了调试器的设置，其默认内容如下：</p>
+ <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="comment">// 使用 IntelliSense 了解相关属性。 </span></span><br><span class="line"><span class="comment">// 悬停以查看现有属性的描述。</span></span><br><span class="line"><span class="comment">// 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387</span></span><br><span class="line"><span class="attr">"version"</span>: <span class="string">"0.2.0"</span>,</span><br><span class="line"><span class="attr">"configurations"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"g++.exe build and debug active file"</span>,</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"cppdbg"</span>,</span><br><span class="line">        <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">        <span class="attr">"program"</span>: <span class="string">"$&#123;fileDirname&#125;\\$&#123;fileBasenameNoExtension&#125;.exe"</span>,</span><br><span class="line">        <span class="attr">"args"</span>: [],</span><br><span class="line">        <span class="attr">"stopAtEntry"</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">"cwd"</span>: <span class="string">"$&#123;workspaceFolder&#125;"</span>,</span><br><span class="line">        <span class="attr">"environment"</span>: [],</span><br><span class="line">        <span class="attr">"externalConsole"</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">"MIMode"</span>: <span class="string">"gdb"</span>,</span><br><span class="line">        <span class="attr">"miDebuggerPath"</span>: <span class="string">"D:\\software\\MinGW\\bin\\gdb.exe"</span>,</span><br><span class="line">        <span class="attr">"setupCommands"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"description"</span>: <span class="string">"为 gdb 启用整齐打印"</span>,</span><br><span class="line">                <span class="attr">"text"</span>: <span class="string">"-enable-pretty-printing"</span>,</span><br><span class="line">                <span class="attr">"ignoreFailures"</span>: <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">"preLaunchTask"</span>: <span class="string">"g++.exe build active file"</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>program</code>: 最后需要指定可执行程序的名称；</li>
+<li><code>stopAtEntry</code>: 启动调试时自动停止在程序入口第一行main，可设置为true或false；</li>
+<li><code>miDebuggerPath</code>：指定gdb调试器的路径，在我电脑上为<code>D:\\software\\MinGW\\bin\\gdb.exe</code>；</li>
+</ul>
+</li>
+</ol>
+<h3 id="4-构建程序"><a href="#4-构建程序" class="headerlink" title="4.构建程序"></a>4.构建程序</h3><p>创建了构建任务<code>tasks.json</code>，有两种运行方式可以执行构建任务：</p>
+<ul>
+<li>直接按Ctrl+Shift+B（需要将任务设置为默认）；</li>
+<li>在命令面板中输入task，然后选择运行构建任务；<br>任务执行后，在集成终端窗口中会显示编译器的输出，指示构建成功或者失败，对于成功的构建，输出如下：<img src="/2020/01/30/vscode%E9%85%8D%E7%BD%AEC++%E7%8E%AF%E5%A2%83/7.png" class="">
+在终端输出消息后，按任意键关闭构建消息。</li>
+</ul>
+<p>构建任务运行后，如果构建成功，在当前工作区会生成我们在构建任务中指定的可执行程序.<br><img src="/2020/01/30/vscode%E9%85%8D%E7%BD%AEC++%E7%8E%AF%E5%A2%83/8.png" class=""></p>
+<h3 id="5-启动调试会话"><a href="#5-启动调试会话" class="headerlink" title="5.启动调试会话"></a>5.启动调试会话</h3><p>启动调试有两种方式：</p>
+<ul>
+<li>直接按F5；</li>
+<li>选择调试-&gt;启动调试</li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://blog.csdn.net/qq_40477151/article/details/103917156" target="_blank" rel="noopener">https://blog.csdn.net/qq_40477151/article/details/103917156</a><br><a href="https://blog.csdn.net/Mculover666/article/details/89843448" target="_blank" rel="noopener">https://blog.csdn.net/Mculover666/article/details/89843448</a><br><a href="https://www.zhihu.com/question/30315894" target="_blank" rel="noopener">https://www.zhihu.com/question/30315894</a></p>
 
     </div>
 
@@ -379,7 +442,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-创建工作区"><span class="nav-text">1 创建工作区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-创建代码"><span class="nav-text">2 创建代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-编译调制设置"><span class="nav-text">3 编译调制设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-配置编译器路径"><span class="nav-text">3.1 配置编译器路径</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-创建工作区"><span class="nav-text">1 创建工作区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-创建代码"><span class="nav-text">2 创建代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-编译调制设置"><span class="nav-text">3 编译调制设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-配置编译器路径"><span class="nav-text">3.1 配置编译器路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-创建构建任务"><span class="nav-text">3.2 创建构建任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-配置调试设置"><span class="nav-text">3.3 配置调试设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-构建程序"><span class="nav-text">4.构建程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-启动调试会话"><span class="nav-text">5.启动调试会话</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-text">参考文献</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -448,13 +511,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">11k</span>
+    <span title="站点总字数">16k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">10 分钟</span>
+    <span title="站点阅读时长">14 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
